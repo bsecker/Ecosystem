@@ -19,6 +19,7 @@ public class PVector {
     /**
      * Perform vector addition with another vector v.
      * @param v
+     * @return current object
      */
     public void add(PVector v) {
         this.x += v.getX();
@@ -26,12 +27,27 @@ public class PVector {
     }
 
     /**
+     * Return new vector as addition of two vectors v and u
+     */
+    public PVector add(PVector v, PVector u) {
+        return new PVector(v.getX() + u.getX(), v.getY() + u.getY());
+
+    }
+    /**
      * Perform vector subraction with another vector v.
      * @param v
      */
     public void sub(PVector v) {
         this.x +=- v.getX();
         this.y +=- v.getY();
+    }
+
+    /**
+     * Return new vector as subtraction of two vectors u and v
+     */
+
+    public static PVector sub(PVector v, PVector u) {
+        return new PVector(v.getX() - u.getX(), v.getY() - u.getY());
     }
 
     /**
@@ -80,6 +96,14 @@ public class PVector {
 
     public void heading() {
         ;
+    }
+
+    /**
+     * Return new PVector class as a copy of the current vector
+     * @return
+     */
+    public PVector get() {
+        return new PVector(this.getX(), this.getY());
     }
 
     /**

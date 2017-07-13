@@ -5,35 +5,35 @@
 import ecs100.*;
 import java.awt.*;
 
-public class Mover {
-    private PVector location;
-    private PVector velocity;
-    private PVector accelleration;
+public class Fly extends Entity {
 
     double topSpeed;
     double size;
+    double accel;
 
-    public Mover(float x, float y) {
+    public Fly(float x, float y) {
         this.location = new PVector(x, y);
         this.velocity = new PVector(0, 0);
-        this.accelleration = new PVector(-4, 2);
+        this.acceleration = new PVector(-4, 2);
 
-        this.topSpeed = 4;
-        this.size = 15;
+        this.topSpeed = 8;
+        this.size = 10;
+        this.accel = 4;
     }
 
     public void update() {
-        this.accelleration = PVector.random2d();
-        this.accelleration.mult(2);
+        this.acceleration = PVector.random2d();
+        this.acceleration.mult(accel);
 
-        this.velocity.add(this.accelleration);
+        this.velocity.add(this.acceleration);
         this.velocity.limit(this.topSpeed);
         this.location.add(this.velocity);
 
     }
 
-    public void display() {
+    public void draw() {
         UI.setColor(Color.black);
         UI.drawOval(location.getX() - size/2, location.getY() - size/2 , size, size);
     }
+
 }
