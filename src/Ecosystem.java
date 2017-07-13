@@ -5,17 +5,19 @@ import ecs100.UI;
  */
 public class Ecosystem {
 
-    public static final int DELAY = 50;
+    public static final int DELAY = 15;
 
     public Ecosystem() {
         UI.initialise();
         UI.setImmediateRepaint(true);
         UI.setDivider(0);      // expands the graphics area
-        Fly mover = new Fly(300, 300);
 
+        Fly mover = new Fly(300, 300);
+        PVector wind = new PVector(0.01, 0);
 
         while (true) {
             UI.clearGraphics();
+            mover.applyForce(wind);
             mover.update();
             mover.draw();
             UI.sleep(DELAY);

@@ -14,20 +14,22 @@ public class Fly extends Entity {
     public Fly(float x, float y) {
         this.location = new PVector(x, y);
         this.velocity = new PVector(0, 0);
-        this.acceleration = new PVector(-4, 2);
+        this.acceleration = new PVector(0, 0);
 
-        this.topSpeed = 8;
-        this.size = 10;
-        this.accel = 4;
+        this.topSpeed = 5;
+        this.size = 20;
+        this.mass = 0.1;
     }
 
     public void update() {
-        this.acceleration = PVector.random2d();
-        this.acceleration.mult(accel);
 
+        // update resulting velocity and position vectors
         this.velocity.add(this.acceleration);
         this.velocity.limit(this.topSpeed);
         this.location.add(this.velocity);
+
+        // clear accelleration for each frame
+        acceleration.mult(0);
 
     }
 

@@ -13,6 +13,7 @@ public class Entity {
         ;
     }
 
+    // apply newtons second law
     public void applyForce(PVector force) {
         force.div(mass);
         acceleration.add(force);
