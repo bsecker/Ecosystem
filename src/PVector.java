@@ -1,15 +1,17 @@
 import sun.util.resources.cldr.naq.CalendarData_naq_NA;
 
+import java.util.Random;
+
 /**
  * Created by Benjamin on 13-Jul-17.
  * Used primarily for making games, but can be applicable anywhere (I use it to help with homework :D)
  */
 public class PVector {
     /** Physics Vector Class. */
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
-    public PVector(float x, float y) {
+    public PVector(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -36,7 +38,7 @@ public class PVector {
      * Multiply vector by scalar n.
      * @param n
      */
-    public void mult(float n) {
+    public void mult(double n) {
         this.x *= n;
         this.y *= n;
     }
@@ -45,7 +47,7 @@ public class PVector {
      * divide vector by scalar n.
      * @param n
      */
-    public void div(float n) {
+    public void div(double n) {
         this.x = this.x / n;
         this.y = this.y / n;
     }
@@ -54,35 +56,50 @@ public class PVector {
      * return magnitude of current vector
      * @return
      */
-    public float mag() {
-        return (float) Math.sqrt((float)Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    public double mag() {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
 
     /**
      * Normalise the vector
      */
     public void normalise() {
-        float _mag = mag();
+        double _mag = mag();
         if (_mag!= 0) div(_mag);
     }
 
-    public void limit() {
-        ;
+    /**
+     * constrain vector magnitude to m
+     */
+    public void limit(double m) {
+        if (mag() > m) {
+            normalise();
+            mult(m);
+        }
     }
 
     public void heading() {
         ;
     }
 
+    /**
+     * return unit vector in random direction.
+     */
+    public static PVector random2d() {
+        PVector v = new PVector(Math.random()*2 - 1, Math.random()*2 - 1);
+        v.normalise();
+        return v;
+    }
 
 
 
 
-    public float getY() {
+
+    public double getY() {
         return y;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
 
     }
