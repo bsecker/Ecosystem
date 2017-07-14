@@ -42,6 +42,8 @@ public class PVector {
         this.y +=- v.getY();
     }
 
+
+
     /**
      * Return new vector as subtraction of two vectors u and v
      */
@@ -118,6 +120,7 @@ public class PVector {
 
 
 
+    /** --------------MISC FUNCTIONS-------------- */
 
     public double getY() {
         return y;
@@ -125,7 +128,14 @@ public class PVector {
 
     public double getX() {
         return x;
+    }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public String toString() {
