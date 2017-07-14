@@ -18,7 +18,7 @@ public class Fly extends Entity {
         this.velocity = new PVector(0, 0);
         this.acceleration = new PVector(0, 0);
 
-        this.topSpeed = 3;
+        this.topSpeed = 2;
         this.size = 5;
         this.mass = 1;
     }
@@ -26,17 +26,22 @@ public class Fly extends Entity {
     public void update() {
 
         // apply random force to simulate random movement
-//        PVector random_dir = PVector.random2d();
-//        random_dir.mult(0.2);
-//        this.applyForce(random_dir);
+        PVector random_dir = PVector.random2d();
+        random_dir.mult(0.2);
+        this.applyForce(random_dir);
 
-        // update
-        super.update();
+        // update resulting velocity and position vectors
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(this.topSpeed); // limit velocity
+        this.location.add(this.velocity);
+
+        // clear accelleration for each frame
+        acceleration.mult(0);
 
     }
 
     public void draw() {
-        UI.setColor(Color.black);
+        UI.setColor(this.color);
         UI.drawOval(location.getX() - size/2, location.getY() - size/2 , size, size);
     }
 

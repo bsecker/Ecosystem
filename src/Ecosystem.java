@@ -1,3 +1,4 @@
+import com.sun.org.apache.regexp.internal.RE;
 import ecs100.UI;
 
 import java.awt.*;
@@ -34,15 +35,28 @@ public class Ecosystem {
 
         // add attractive object
         Fly attractive_fly = new Fly(Ecosystem.RIGHT / 2, Ecosystem. BOTTOM / 2);
+        attractive_fly.setColor(Color.RED);
         entities.add(attractive_fly);
+
+        // add repelling object
+        Fly stinky_fly = new Fly(Math.random()*WIDTH, Math.random()*HEIGHT);
+        stinky_fly.setColor(Color.BLUE);
+        stinky_fly.size = 10;
+        stinky_fly.repel_strength = 50;
+        entities.add(stinky_fly);
 
         while (true) {
             UI.clearGraphics();
 
             for (Entity v: entities) {
                 v.check_edges();
+
                 PVector attact_force = attractive_fly.attract(v);
                 v.applyForce(attact_force);
+
+                PVector repel_force = stinky_fly.repel(v);
+                v.applyForce(repel_force);
+
                 v.update();
                 v.draw();
             }
