@@ -118,8 +118,6 @@ public class PVector {
     }
 
 
-
-
     /** --------------MISC FUNCTIONS-------------- */
 
     public double getY() {

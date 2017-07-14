@@ -83,6 +83,25 @@ public class Entity {
         return dir;
     }
 
+    /**
+     * Apply drag force in liquid l.
+     * @param l
+     */
+    public void drag(Liquid l) {
+        double speed = this.velocity.mag();
+        // The force’s magnitude: Cd * v~2~
+        double dragMagnitude = l.getDrag_coefficient() * speed * speed;
+
+        PVector drag = velocity.get();
+        drag.mult(-1);
+        drag.normalise();
+        drag.mult(dragMagnitude);
+
+        // Apply the force.
+        applyForce(drag);
+    }
+
+
     public void update() {
 
         // update resulting velocity and position vectors
