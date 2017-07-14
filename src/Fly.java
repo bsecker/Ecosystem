@@ -23,9 +23,14 @@ public class Fly extends Entity {
 
     public void update() {
 
+        // apply random force to simulate random movement
+        PVector random_dir = PVector.random2d();
+        random_dir.mult(0.2);
+        this.applyForce(random_dir);
+
         // update resulting velocity and position vectors
         this.velocity.add(this.acceleration);
-        this.velocity.limit(this.topSpeed);
+        this.velocity.limit(this.topSpeed); // limit velocity
         this.location.add(this.velocity);
 
         // clear accelleration for each frame
