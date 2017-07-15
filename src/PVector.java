@@ -1,5 +1,3 @@
-import sun.util.resources.cldr.naq.CalendarData_naq_NA;
-
 import java.util.Random;
 
 /**

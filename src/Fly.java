@@ -14,10 +14,6 @@ public class Fly extends Entity {
     public Fly(double x, double y) {
         super(x, y);
 
-        this.location = new PVector(x, y);
-        this.velocity = new PVector(0, 0);
-        this.acceleration = new PVector(0, 0);
-
         this.topSpeed = 2;
         this.size = 5;
         this.mass = 1;

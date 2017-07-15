@@ -21,6 +21,7 @@ public class Ecosystem {
 
 
     public ArrayList<Entity> entities = new ArrayList<Entity>();
+    Player player;
 
 
     public Ecosystem() {
@@ -28,6 +29,7 @@ public class Ecosystem {
         UI.setWindowSize((int)RIGHT+30, (int) BOTTOM+10);
         UI.setImmediateRepaint(true);
         UI.setDivider(0);      // expands the graphics area
+        UI.setMouseMotionListener(this::doMouse);
 
         // add a bunch of fly objects
         for (int i=0; i< 30; i++) {
@@ -41,13 +43,17 @@ public class Ecosystem {
 
         // add repelling object
         Fly stinky_fly = new Fly(Math.random()*WIDTH, Math.random()*HEIGHT);
-        stinky_fly.setColor(Color.BLUE);
+        stinky_fly.setColor(Color.GREEN);
         stinky_fly.size = 10;
         stinky_fly.repel_strength = 50;
         entities.add(stinky_fly);
 
+        // add player
+        player = new Player(Math.random()*WIDTH, Math.random()*HEIGHT);
+        entities.add(player);
+
         while (true) {
-            UI.clearGraphics();
+            UI.clearGraphics(); // todo fix this so not so glitchy
 
             for (Entity v: entities) {
                 v.check_edges();
@@ -67,9 +73,13 @@ public class Ecosystem {
         }
     }
 
+    private void doMouse(String s, double x, double y) {
+        if (player != null) player.seek(new PVector(x, y));
+    }
+
     public static void draw_border() {
         UI.setColor(Color.black);
-        UI.drawRect( LEFT, TOP, LEFT+WIDTH, TOP+HEIGHT);
+        UI.drawRect( LEFT, TOP, RIGHT, BOTTOM);
     }
 
     public static void main(String[] args) {
